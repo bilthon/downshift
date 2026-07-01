@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react';
+import { useCallback, useRef, useState, type CSSProperties } from 'react';
 import type { Product } from '../types/product';
 import { formatPrice } from '../lib/format';
 import { StarRating } from './StarRating';
@@ -7,9 +7,10 @@ import { ProductDialog } from './ProductDialog';
 
 interface ProductCardProps {
   product: Product;
+  style?: CSSProperties;
 }
 
-export function ProductCard({ product }: ProductCardProps) {
+export function ProductCard({ product, style }: ProductCardProps) {
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
 
@@ -20,7 +21,8 @@ export function ProductCard({ product }: ProductCardProps) {
 
   return (
     <div
-      className={`relative flex flex-col rounded-lg border border-stone-200 bg-white p-4 transition-shadow has-[:hover]:shadow-md has-[:focus-visible]:shadow-md ${
+      style={style}
+      className={`card-reveal relative flex flex-col rounded-lg border border-stone-200 bg-white p-4 transition-shadow has-[:hover]:shadow-md has-[:focus-visible]:shadow-md ${
         product.inStock ? '' : 'grayscale opacity-60'
       }`}
     >

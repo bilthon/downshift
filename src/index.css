@@ -16,3 +16,25 @@ body { font-family: var(--font-sans); }
     cursor: pointer;
   }
 }
+
+@keyframes card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+}
+
+.card-reveal {
+  animation: card-reveal 400ms ease-out backwards;
+  /* Fallback for browsers without sibling-index() (e.g. Firefox): a --sibling-index
+     custom property set inline wins here; browsers that support sibling-index()
+     parse the next declaration instead and use that one. */
+  animation-delay: calc(var(--sibling-index, 1) * var(--stagger-time, 100ms));
+  animation-delay: calc(sibling-index() * var(--stagger-time, 100ms));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .card-reveal {
+    animation: none;
+  }
+}
