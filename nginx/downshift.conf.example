@@ -1,0 +1,20 @@
+# Deploy: npm run build -> rsync dist/ to the server -> drop this block into
+# the existing server config -> nginx -t && systemctl reload nginx
+server {
+  listen 443 ssl;
+  server_name your-domain.example;
+
+  root /var/www/downshift/dist;
+  index index.html;
+
+  location / {
+    try_files $uri $uri/ /index.html;
+  }
+
+  location = /api/items.json {
+    proxy_pass https://media.downshift.app/hiring/founding-engineer/items.json;
+    proxy_set_header Host media.downshift.app;
+    proxy_ssl_server_name on;
+    proxy_http_version 1.1;
+  }
+}
