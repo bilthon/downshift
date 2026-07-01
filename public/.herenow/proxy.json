@@ -1,0 +1,8 @@
+{
+  "proxies": {
+    "/api/items.json": {
+      "upstream": "https://media.downshift.app/hiring/founding-engineer/items.json",
+      "method": "GET"
+    }
+  }
+}
