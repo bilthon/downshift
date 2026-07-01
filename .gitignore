@@ -12,6 +12,9 @@ dist
 dist-ssr
 *.local
 
+# local here.now publish state (slugs/claim tokens) - not source, never commit
+/.herenow/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
