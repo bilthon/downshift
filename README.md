@@ -14,4 +14,6 @@ Important design considerations:
 
 
 ### Local development
+```bash
 npm install && npm run dev
+```
